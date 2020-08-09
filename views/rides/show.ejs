@@ -1,0 +1,133 @@
+<%- include("../partials/header") %>
+<%if(currentUser && rides.author.id.equals(currentUser._id)){%>
+<%}%>
+<p class="c1 hide"><%= rides.lat%></p>
+<p class="c2 hide"><%= rides.lng%></p>
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-lg-3 mb-3 md-mb-0"> 
+            <div id="map"></div>     
+        </div>
+        <div class="col-lg-9">
+            <div class="card mb-3 light_black">
+                <img src="<%= rides.image %>" class="img-fluid card-img-top" alt="Responsive image">
+                <div class="card-body">
+                    <h1 class="card-title white"><%= rides.name %></h1>
+                    <span class="white">
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vero a fugiat accusantium expedita ipsam ut dignissimos. Illum at quisquam eos, corrupti ducimus vitae eveniet est nemo sint odit? Reprehenderit, dolorum.
+                    </span>
+                    <hr class="my-4">
+                    <div class="row mt-4 justify-content-center">
+                        <div class="col-6 ">
+                            <p class="white">Kms:  <%= rides.kms%></p>
+                        </div>
+                        <div class="col-6 justify-content-center">
+                            <p class="white">Days:  <%= rides.days%></p>
+                        </div>
+                    </div>
+                    <hr class="my-4">
+                    <div class="row">
+                        <div class="col-6 justify-content-center">
+                            <p class="white">Gender:  <%= rides.rideType%></p>
+                        </div>
+                        <div class="col-6 justify-content-center">
+                            <p class="white">Ride type:  <%= rides.genderType%></p>
+                        </div>
+                    
+                    </div>
+                    <hr class="my-4">
+                    <div class="row">
+                        <div class="col-6 justify-content-center">
+                            <p class="white">Date:  <%= rides.startDate%></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <form action="/rides/<%= rides._id%>?_method=DELETE" method="post" >
+                            <button class="btn btn-sm black white mx-2" type="submit" ><i class="fas fa-trash"></i> Delete</button>
+                        </form>
+                        <a class="btn btn-sm black white mx-2" href="/rides/<%=rides._id%>/edit"><i class="far fa-edit"></i> Edit</a>
+                        <a class="btn btn-sm black white mx-2" href="/rides/<%=rides._id%>/book">Book</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+    <!-- <% if(rides.comments){%> -->
+    <div class="row">
+        <div class="col">
+            <div class="card mb-3 light_black">
+                <div class="card-body">
+                    <form action="/rides/show/<%= rides._id%>/comments" method="post">
+                        <div class="row">
+                            <div class="col-6">
+                                <input type="text" name="comment[text]" placeholder="add comment here...." class="border">
+                            </div>
+                            <div class="col-6">
+                                <button type="submit" class="btn btn-sm black white float-right"><i class="far fa-paper-plane"></i></button>
+                            </div>
+                        </div>   
+                    </form>
+                </div>
+                <% if(rides.comments.length>0){%>
+                <p class="white ml-3">Comments</p>
+                <% rides.comments.forEach(function(comment){%>
+                <div class="row mt-2 mb-1 ml-3">
+                    <span class="white">
+                        <strong><%=comment.author.username%></strong>
+                    </span>
+                </div>
+                <div class="row mt-1 mb-2 ml-3">
+                    <div class="col-6">
+                        <span class="white">
+                            <%=comment.text%>
+                        </span>
+                    </div>
+                    <div class="col-6">
+                        <form action="/rides/show/<%=rides._id%>/comments/<%=comment._id%>?_method=DELETE" method="post">
+                            <button class="btn btn-sm black white" type="submit"><i class="fas fa-trash"></i></button>
+                        </form>
+                    </div>
+                </div>
+                <%})%>
+                <% } %>
+            </div>
+        </div>
+    </div>
+    <!-- <%}%> -->
+</div>
+
+
+<script>
+    var c1=document.querySelector(".c1");
+    var c2=document.querySelector(".c2");
+    c3=c1.textContent;
+    c4=c2.textContent;
+    console.log(parseInt(c3));
+    function initMap() {
+       
+      var lat =parseFloat(c3) ;
+      var lng = parseFloat(c4) ;
+      var center = {lat: lat, lng: lng };
+      var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 8,
+          center: center,
+          scrollwheel: false
+      });
+      var contentString = `
+        <strong><%= rides.name %><br />
+        <%= rides.location %></strong>
+      `
+      var infowindow = new google.maps.InfoWindow({
+        content: contentString
+      });
+      var marker = new google.maps.Marker({
+          position: center,
+          map: map
+      });
+      marker.addListener('click', function() {
+        infowindow.open(map, marker);
+      });
+    }
+  </script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=APIKEY&callback=initMap"></script>
+<%- include("../partials/footer") %>

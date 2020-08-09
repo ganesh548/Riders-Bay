@@ -1,0 +1,65 @@
+<%- include("../partials/header") %>
+<div class="container pt-3 light_black">
+        <h2 style="width: 100%;" class="my-3 white" >BOOK YOUR RIDES HERE</h2>
+        <form action="/rides/<%= rides._id%>/book" method="post">
+            <div class="form-group col-md-6 mx-auto"style="width: 90%;">
+                <input type="email" class="form-control"  name="rides[email]" id="text" placeholder=" Enter your Email ID"required>
+            </div>
+            <div class="form-group col-md-6 mx-auto"style="width: 90%;">
+                <input type="number" class="form-control"  name="rides[contact]" id="text" placeholder="Enter your Phone no."required>
+            </div>
+            <div class="form-group col-md-6 mx-auto " style="width: 90%;">
+                <input type="text" class="form-control" name="rides[Joining]" id="text" placeholder="Enter your Joining Point"required>
+            </div>
+            <div class="form-group col-md-6 mx-auto" style="width: 90%;margin:20px auto;">
+                <input type="text" class="form-control" name="rides[payment]" id="text" placeholder="Enter your payment"required>
+            </div>
+            <span >
+            </span>
+            <div class="form-group col-md-6 white mx-auto"style="width:85%;">
+                <div class="row">
+                    <legend class="col-form-label">People on ride:</legend>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="radio-button" id="gender" value="male" name="rides[rideType]">
+                    <label class="form-check-label" for="gridRadios1">
+                        Male Only
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="radio-button" id="gender"value="female" name="rides[rideType]">
+                    <label class="form-check-label" for="gridRadios1">
+                        Female Only
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="radio-button" id="gender"value="both" name="rides[rideType]">
+                    <label class="form-check-label" for="gridRadios1">
+                        Both
+                    </label>
+                </div>
+            </div> 
+            <div class=" form-group col-lg-6 mx-auto white"style="width: 85%;">
+                <div class="row">
+                    <legend class="col-form-label">Type Of People:</legend>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="row-md-4"  id="gender" value="solo" name="rides[genderType]">
+                    <label class="form-check-label" for="gridRadios1">
+                        Solo
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="row-md-4" id="gender"value="duo" name="rides[genderType]">
+                    <label class="form-check-label" for="gridRadios1">
+                        Duo
+                    </label>
+                </div>   
+            </div>
+            <div class="row justify-content-center">
+                <button type="submit" class="btn btn-lg black white" style="width: 37%;margin:20px auto;">Submit</button>
+            </div>
+        </form>
+    </div>
+          
+<%- include("../partials/footer") %>

@@ -1,0 +1,15 @@
+<%- include("./partials/header") %>
+<div class="container pt-5">
+    <h1 class="text-center mt-3 white">SIGN UP HERE</h1>
+    <div class="row justify-content-center">
+        <div class="col-sm-10 col-md-5">
+                <form action="/register" method="post">
+                    <input type="text" name="username"  class="form-control mb-3"  placeholder="Enter your name"required>
+                    <input type="password" name="password"  class="form-control mb-3"  placeholder="Enter your password"required>
+                    <button class="btn btn-lg btn-dark btn-block mb-1" type="submit">Sign in</button>
+                    <a href="/login" class="float-right">Already have an account/sign in?</a>
+                </form>
+        </div>       
+    </div>
+</div>                   
+<%- include("./partials/footer") %>

@@ -1,0 +1,52 @@
+<%- include("../partials/header"); %>
+    <div class="container">
+        <p class="display-3 white">My Rides</p>
+        <div class="row mx-auto">
+           <div class="card white black" style="width: 100%;">
+                <div class="card-body">
+                    <p class="display-4 ">As host</p>
+                    <% if(rides.length>0){ %>
+                    <% rides.forEach(function(ride){%>
+                       <div class="card mx-auto white black my-2" style="width: 90%; border:1px solid white;">
+                           <div class="card-body">
+                                <p class="h3"><%=ride.name;%></p>
+                                <p class="card-text">Date:  <%=ride.startDate;%></p>
+                                <p class="card-text">Gender:  <%=ride.rideType;%></p>
+                                <p class="card-text">Ride type:  <%=ride.genderType;%></p>
+                           </div>
+                       </div>
+                    <%})%>
+                    <%} else {%>
+                        <div class="alert alert-info" role="alert">
+                            You dont have any rides as host!!
+                        </div>
+                    <%}%>
+                </div>
+           </div> 
+        </div>
+        <div class="row mx-auto my-5">
+            <div class="card white black" style="width: 100%;">
+                 <div class="card-body">
+                     <p class="display-4 ">As Participant</p>
+                     <% if(books.length>0){ %>
+                    <% books.forEach(function(book){%>
+                        <div class="card mx-auto white black my-2" style="width: 90%; border:1px solid white;">
+                            <div class="card-header">
+                                <p class="">Booking id:  <%=book._id;%></p>
+                            </div>
+                            <div class="card-body">
+                                 <p class="card-text">Contact number: <%=book.contact;%></p>
+                                 <p class="card-text">Booked on: <%=book.bookingDate;%></p>
+                            </div>
+                        </div>
+                     <%})%>
+                     <%} else {%>
+                         <div class="alert alert-info" role="alert">
+                             You dont have any rides as Participant!!
+                         </div>
+                     <%}%>
+                 </div>
+            </div> 
+        </div>     
+    </div>
+<%- include("../partials/footer"); %>

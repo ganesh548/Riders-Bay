@@ -1,0 +1,57 @@
+body{
+    background-color: rgb(38, 37, 36);
+}
+
+nav{
+    background-color: black;
+}
+
+.black{
+    background-color: black;
+}
+
+.light_black{
+    background-color:rgb(28, 27, 26);
+}
+
+.white{
+    color:white ;
+}
+
+img{
+    height: 15rem;
+}
+
+hr{
+    background-color: white;
+}
+
+.link{
+    background: none;
+    color: white;
+    border: none;
+    padding: 0;
+}
+
+.border{
+    border: none;
+    border-bottom: 1px solid white;
+    background-color: rgb(28, 27, 26);
+    color: white;
+}
+
+#map {
+    height: 400PX;
+    width: 100%;
+  }
+
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  .hide{
+      display: none;
+  }
+  

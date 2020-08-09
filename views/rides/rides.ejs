@@ -1,0 +1,28 @@
+<%- include("../partials/header") %>
+<div class="container">
+	<div class="jumbotron light_black">
+		<h1 class="display-4 white">Riders-Bay</h1>
+		<p class="lead white">Wanna Have Some Good Ride, Riders-Bay!!!</p>
+		<hr class="my-4">
+		<p class="lead">
+		<a class="btn btn-dark btn-lg black" href="/rides/new" role="button">Add New Rides</a>
+	  	</p>
+	</div>
+	<div class="row text-center mx-auto"  style="display:flex; flex-wrap: wrap;">
+		<% rides.forEach(function(rides){%>
+			<div class="col-md-4 my-3 ">
+				<a href="/rides/<%= rides._id %>" class="nav-link">
+				<div class="card light_black" style="width: 19rem;">
+					<img class="card-img-top" src="<%= rides.image %>" alt="Card image cap">
+					<div class="card-body">	
+						<h5 class="card-title white"><%= rides.name %></h5>
+						<p class="card-text white">posted on:12-12-20</p>
+						<!-- we will be making dynamic dates in later commit -->
+					</div>
+				</div>	
+			</a>
+			</div>
+		<% }) %>
+	</div>
+</div>
+<%- include("../partials/footer") %>
